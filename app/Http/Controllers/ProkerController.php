@@ -20,7 +20,7 @@ class ProkerController extends Controller
 
     public function index()
     {
-        $proker = Proker::all();
+        $proker = Proker::where('status', '1')->get();
 
         return view('pages.admin.proker.proker', compact('proker'));
     }

@@ -22,14 +22,7 @@ class AnggotaController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth:anggota')
-            ->except([
-                'userIndex', 'userAbout',
-                'userAnggota', 'userRapat',
-                'userNews', 'userNewsDetail',
-                'index', 'create','edit', 'update',
-                'showbyid' ,'destroy'
-            ]);
+        $this->middleware('auth');
     }
 
     public function index()
@@ -38,7 +31,7 @@ class AnggotaController extends Controller
         $semester = Semester::all();
         $jabatan = Jabatan::all();
         $agama = Agama::all();
-        $anggota = Anggota::all();
+        $anggota = Anggota::where('status', '1')->get();
 
         return view('pages.admin.anggota.anggota', compact('kelas', 'semester', 'jabatan', 'agama', 'anggota'));
     }
@@ -208,35 +201,5 @@ class AnggotaController extends Controller
         $anggota->update(['status' => '0']);
 
         return redirect()->route('anggota')->with('delete', 'Successfuly Delete from Database');
-    }
-
-    public function userIndex()
-    {
-        return view('pages.user.home');
-    }
-
-    public function userAbout(){
-        return view('pages.user.about');
-    }
-
-    public function  userAnggota(){
-        $anggota = Anggota::all();
-        $jabatan = Jabatan::all();
-        return view('pages.user.anggota',compact('anggota', 'jabatan'));
-    }
-
-    public function userRapat(){
-        return view('pages.user.rapat');
-    }
-
-    public function userNews(){
-        $news = Proker::all();
-        return view('pages.user.news', compact('news'));
-    }
-
-    public function userNewsDetail($id){
-        $newsDetail = Proker::find($id);
-        //dd($newsDetail);
-        return view('pages.user.news-detail', compact('newsDetail'));
     }
 }

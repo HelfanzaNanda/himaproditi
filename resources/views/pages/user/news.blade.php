@@ -23,16 +23,18 @@
 
                         {{--foreach disini--}}
                         @foreach($news as $news)
-
                             <article class="blog_item">
                                 <div class="blog_item_img">
-                                    <a href="{{route('user.news-detail', $news->id)}}">
-                                        <img class="card-img rounded-0" src="{{asset('uploads/proker/'.$news->filename)}}"
-                                             style="max-height: fit-content; max-width: 200px">
+                                    <a href="{{route('user.news-detail', $news->slug)}}">
+                                        <img class="card-img rounded-0"
+                                             src="{{asset('uploads/proker/'.$news->filename)}}" height="300">
                                     </a>
                                     <a href="{{route('user.news-detail', $news->id)}}" class="blog_item_date">
-                                        <h3>15</h3>
-                                        <p>Jan</p>
+                                        <h3>{{substr($news->created_at, 8, 2)}}</h3>
+                                        @if(substr($news->created_at, 5, 2) == '07')
+                                            <p>Juli</p>
+                                        @endif
+
                                     </a>
                                 </div>
 
@@ -40,9 +42,7 @@
                                     <a class="d-inline-block" href="{{route('user.news-detail', $news->id)}}">
                                         <h2>{{$news->nama_proker}}</h2>
                                     </a>
-                                    <p>That dominion stars lights dominion divide years for fourth have don't stars is
-                                        that he earth it first without heaven in place seed it second morning
-                                        saying.</p>
+                                    <p>{{str_limit($news->deskripsi, 80)}}</p>
                                     <ul class="blog-info-link">
                                         <li><a href="#"><i class="far fa-user"></i> Travel, Lifestyle</a></li>
                                         {{--<li><a href="#"><i class="far fa-comments"></i> 03 Comments</a></li>--}}

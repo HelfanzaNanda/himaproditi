@@ -21,7 +21,7 @@ class RapatController extends Controller
 
     public function index()
     {
-        $rapat = Rapat::all();
+        $rapat = Rapat::where('status', '1')->get();
         $anggota = Anggota::all();
 
         return view('pages.admin.rapat.rapat',compact('rapat', 'anggota'));

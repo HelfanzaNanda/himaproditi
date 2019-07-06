@@ -43,12 +43,12 @@ Route::group(['prefix' => '/admin'], function (){
     Route::get('/home', 'HomeController@index')->name('home');
 });
 
-Route::get('/', 'AnggotaController@userIndex')->name('user.home');
-Route::get('/about', 'AnggotaController@userAbout')->name('user.about');
-Route::get('/anggota', 'AnggotaController@userAnggota')->name('user.anggota');
-Route::get('/rapat', 'AnggotaController@userRapat')->name('user.rapat');
-Route::get('/news', 'AnggotaController@userNews')->name('user.news');
-Route::get('/news?{slug}', 'AnggotaController@userNewsDetail')->name('user.news-detail');
+Route::get('/', 'FrontEndController@userIndex')->name('user.home');
+Route::get('/about', 'FrontEndController@userAbout')->name('user.about');
+Route::get('/anggota', 'FrontEndController@userAnggota')->name('user.anggota');
+Route::get('/rapat', 'FrontEndController@userRapat')->name('user.rapat');
+Route::get('/news', 'FrontEndController@userNews')->name('user.news');
+Route::get('/news/{slug}', 'FrontEndController@userNewsDetail')->name('user.news-detail');
 Route::get('/anggota-login', 'AuthAnggota\LoginController@showLoginForm')->name('anggota.login');
 Route::post('/anggota-login', 'AuthAnggota\LoginController@login')->name('anggota.login.submit');
 Route::get('/anggota-logout', 'AuthAnggota\LoginController@logout')->name('anggota.logout');

@@ -23,7 +23,7 @@ class InventarisController extends Controller
 
     public function index()
     {
-        $inventaris = Inventaris::all();
+        $inventaris = Inventaris::where('status', '1')->get();
         return view('pages.admin.inventaris.inventaris', compact('inventaris'));
     }
 

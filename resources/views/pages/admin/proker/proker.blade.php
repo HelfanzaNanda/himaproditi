@@ -54,7 +54,7 @@
                     <tr>
                         <td>{{$no}}</td>
                         <td>{{$proker->nama_proker}}</td>
-                        <td>{{$proker->deskripsi}}</td>
+                        <td>{{str_limit($proker->deskripsi, 20)}}</td>
                         <td><img src="{{asset('uploads/proker/'.$proker->filename)}}" width="30px" height="30px" alt="">
                         </td>
                         <td>{{$proker->judul}}</td>
